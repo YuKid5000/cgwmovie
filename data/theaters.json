@@ -1,0 +1,29 @@
+{
+  "film": {
+    "title": "追蹤者遊戲W 水魚交融",
+    "titleEn": "Chaser Game W: A Fateful Encounter",
+    "releaseDate": "2026-11-06",
+    "rating": "普遍級"
+  },
+  "groups": [
+    "台北",
+    "桃園",
+    "台中",
+    "嘉義",
+    "台南｜高雄"
+  ],
+  "theaters": [
+    { "name": "台北大巨蛋秀泰影城", "group": "台北", "city": "台北", "id": "t02a13", "lat": 25.0443902, "lng": 121.558445, "address": "台北市信義區光復南路105號2樓", "phone": "(02)27620767", "booking": "https://www.showtimes.com.tw/programs/13123" },
+    { "name": "台北信義威秀影城", "group": "台北", "city": "台北", "id": "t02a01", "lat": 25.035684, "lng": 121.566542, "address": "台北市信義區松壽路16、18號", "phone": "(02)8780-5566", "booking": "https://www.vscinemas.com.tw/ShowTimes/" },
+    { "name": "台北西門威秀影城", "group": "台北", "city": "台北", "id": "t02b08", "lat": 25.043629, "lng": 121.507094, "address": "台北市萬華區漢中街52號8-11樓", "phone": "(02) 2312-3232", "booking": "https://www.vscinemas.com.tw/ShowTimes/" },
+    { "name": "台北南港LaLaport威秀影城", "group": "台北", "city": "台北", "id": "t02a12", "lat": 25.059359, "lng": 121.617577, "address": "台北市南港區經貿二路131號5樓", "phone": "(02) 2785-1688", "booking": "https://www.vscinemas.com.tw/ShowTimes/" },
+    { "name": "美麗新大直皇家影城", "group": "台北", "city": "台北", "id": "t02d06", "lat": 25.084964, "lng": 121.553741, "address": "台北市中山區北安路780號B2", "phone": "(02)7718-8588", "booking": "https://www.miranewcinemas.com.tw/" },
+    { "name": "桃園統領威秀影城", "group": "桃園", "city": "桃園", "id": "t03308", "lat": 24.9910614, "lng": 121.312373, "address": "桃園市桃園區中正路61號9樓 (統領百貨)", "phone": "(03) 333-3232", "booking": "https://www.vscinemas.com.tw/ShowTimes/" },
+    { "name": "美麗新台茂影城", "group": "桃園", "city": "桃園", "id": "t03301", "lat": 25.121953, "lng": 121.355106, "address": "桃園市蘆竹鄉南崁路一段112號7樓", "phone": "(03)311-3123", "booking": "https://www.miranewcinemas.com.tw/" },
+    { "name": "台中iFG遠雄廣場威秀影城", "group": "台中", "city": "台中", "id": "t04409", "lat": 24.136234, "lng": 120.687428, "address": "台中市東區復興路四段186號4樓", "phone": "04-2228-0388", "booking": "https://www.vscinemas.com.tw/ShowTimes/" },
+    { "name": "嘉義in89豪華大戲院", "group": "嘉義", "city": "嘉義", "id": "t05505", "lat": 23.4762574, "lng": 120.452688, "address": "嘉義市東區民族路328號", "phone": "05-2293189", "booking": "https://www.in89cinemax.com/film_list.aspx?TheaterId=17" },
+    { "name": "台南FOCUS威秀影城", "group": "台南｜高雄", "city": "台南", "id": "t06611", "lat": 22.99661, "lng": 120.21039, "address": "台南市中西區中山路166號11、12、13樓", "phone": "06-222-3566", "booking": "https://www.vscinemas.com.tw/ShowTimes/" },
+    { "name": "高雄大遠百威秀影城", "group": "台南｜高雄", "city": "高雄", "id": "t07703", "lat": 22.613072, "lng": 120.30395, "address": "高雄市苓雅區三多四路21號13樓", "phone": "(07)334-5566", "booking": "https://www.vscinemas.com.tw/ShowTimes/" },
+    { "name": "高雄大立in89豪華大戲院", "group": "台南｜高雄", "city": "高雄", "id": "t07728", "lat": 22.621851, "lng": 120.29827, "address": "高雄市前金區五福三路57號9樓", "phone": "07- 2166189", "booking": "https://www.in89.com.tw/film_list.aspx?TheaterId=16" }
+  ]
+}

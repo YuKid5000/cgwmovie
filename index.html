@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>追蹤者遊戲W 水魚交融 全台戲院地圖</title>
+  <meta name="description" content="《追蹤者遊戲W 水魚交融》全台上映戲院地圖：找離你最近的戲院">
+  <meta property="og:title" content="追蹤者遊戲W 水魚交融 全台戲院地圖">
+  <meta property="og:description" content="11.06 全台上映｜12 間上映戲院地圖・一鍵前往訂票・找離你最近的戲院">
+  <meta name="theme-color" content="#1f9bb5">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤍</text></svg>">
+  <script>
+    // 預設淺色，使用者切換過才記住；先設定好避免載入時閃爍
+    let theme = 'light';
+    try { theme = JSON.parse(localStorage.getItem('chaser-theme')) || 'light'; } catch {}
+    document.documentElement.dataset.theme = theme;
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@700&family=Noto+Serif+TC:wght@900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <span class="site-title">追蹤者遊戲W 水魚交融</span>
+    <div class="header-right">
+      <span class="badge">11.06 上映</span>
+      <button class="toggle-btn" id="themeToggle" aria-label="切換深色模式"></button>
+      <span class="toggle-icon" aria-hidden="true">🌙</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="hero-copy copy-top" aria-hidden="true">愛是—</span>
+    <span class="hero-copy copy-bottom" aria-hidden="true">絆腳石</span>
+    <div class="hero-inner">
+      <p class="hero-en">CHASER GAME W</p>
+      <h1><span class="t-main">追蹤者遊戲W</span><span class="t-sub">水魚交融</span></h1>
+      <p class="hero-cast">菅井友香　　中村百合香</p>
+      <p class="hero-sub">全台 <strong>12</strong> 間戲院<br><span class="rating">普遍級</span> 2026.11.06 全台上映</p>
+    </div>
+  </section>
+
+  <section class="ig-section" aria-label="電影官方 Instagram">
+    <figure class="ig-embed">
+      <iframe src="https://www.instagram.com/chasergamew2026/embed" title="《追蹤者遊戲W 水魚交融》官方 Instagram（@chasergamew2026）" loading="lazy" scrolling="no" allowtransparency="true"></iframe>
+      <figcaption>
+        <a href="https://www.instagram.com/chasergamew2026" target="_blank" rel="noopener">想看更多電影介紹請上官方 Instagram →</a>
+      </figcaption>
+    </figure>
+  </section>
+
+  <main class="app">
+    <aside class="panel" id="panel">
+      <div class="controls">
+        <div class="search-row">
+          <input id="q" class="search-input" type="search" placeholder="搜尋戲院、城市或地址" autocomplete="off">
+          <button class="locate-btn" id="locate" type="button">📍 我附近</button>
+        </div>
+        <div class="chips" id="groups" aria-label="地區"></div>
+        <div class="row">
+          <label class="check"><input type="checkbox" id="onlyFav"> 只看收藏 ★</label>
+          <span class="count" id="count"></span>
+        </div>
+      </div>
+
+      <div id="list" aria-live="polite"></div>
+      <p class="empty" id="empty" hidden>找不到符合的戲院，換個關鍵字試試看。</p>
+
+      <footer>
+        <p>點「查場次・訂票」會前往各戲院官網；場次、票價與售票狀況以官網為準。</p>
+      </footer>
+    </aside>
+
+    <section class="map-wrap" aria-label="戲院地圖">
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
