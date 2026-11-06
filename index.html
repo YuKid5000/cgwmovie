@@ -59,8 +59,13 @@
           <button class="locate-btn" id="locate" type="button">📍 我附近</button>
         </div>
         <div class="chips" id="groups" aria-label="地區"></div>
+        <div class="date-row" id="dateRow" hidden>
+          <span class="date-label" id="dateLabel">場次</span>
+          <div class="chips" id="dates" aria-label="場次日期"></div>
+        </div>
         <div class="row">
           <label class="check"><input type="checkbox" id="onlyFav"> 只看收藏 ★</label>
+          <label class="check" id="onlyShowingWrap" hidden><input type="checkbox" id="onlyShowing"> 只看這天有場次</label>
           <span class="count" id="count"></span>
         </div>
       </div>

@@ -219,6 +219,28 @@ button { font: inherit; }
 }
 .chip .n { opacity: .75; font-size: .72rem; margin-left: 4px; }
 
+/* ── 場次：日期選擇、卡片上的時刻、整週一覽 ── */
+[hidden] { display: none !important; }
+.date-row { display: flex; align-items: center; gap: 10px; padding-top: 10px; }
+.date-row .chips { flex: 1; min-width: 0; padding-top: 0; }
+.date-label { flex: none; font-size: .78rem; font-weight: 700; color: var(--accent-strong); }
+.times-note { font-size: .72rem; color: var(--text-muted); margin-top: 6px; }
+.times { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.times-date { font-size: .75rem; font-weight: 700; color: var(--text-muted); margin-right: 2px; }
+.time {
+  font-size: .9rem; font-weight: 700; font-variant-numeric: tabular-nums;
+  padding: 1px 10px; border-radius: var(--radius-sm);
+  background: var(--accent-soft); color: var(--accent-strong);
+}
+.time.past { opacity: .45; text-decoration: line-through; }
+.no-time { font-size: .8rem; color: var(--text-muted); }
+.week summary { width: fit-content; font-size: .78rem; color: var(--accent); cursor: pointer; }
+.week ul { list-style: none; margin-top: 6px; display: grid; gap: 2px; font-size: .8rem; }
+.week li { display: flex; gap: 10px; padding: 2px 8px; border-radius: 6px; }
+.week li.on { background: var(--accent-soft); }
+.week .d { flex: none; width: 5.4em; color: var(--text-muted); }
+.week .ts { font-variant-numeric: tabular-nums; }
+
 .row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; padding-top: 10px; font-size: .82rem; }
 .check { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); cursor: pointer; }
 .check input { accent-color: var(--accent); }
