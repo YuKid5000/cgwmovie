@@ -254,6 +254,13 @@ button { font: inherit; }
 .week .d { flex: none; width: 5.4em; color: var(--text-muted); }
 .week .ts { font-variant-numeric: tabular-nums; }
 
+/* 已下檔戲院：收在清單最下方 */
+.ended { margin-top: 22px; padding: 12px 16px; border: 1px dashed var(--border); border-radius: var(--radius); font-size: .8rem; color: var(--text-muted); }
+.ended summary { cursor: pointer; font-weight: 700; }
+.ended ul { list-style: none; margin-top: 8px; display: grid; gap: 4px; }
+.ended li { display: flex; justify-content: space-between; gap: 12px; }
+.ended li span { flex: none; font-size: .72rem; }
+
 .row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; padding-top: 10px; font-size: .82rem; }
 .check { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); cursor: pointer; }
 .check input { accent-color: var(--accent); }

@@ -48,6 +48,10 @@
     return d.replace(/-/g, '/');
   }
 
+  // 已下檔：資料裡有 lastDay（最後上映日）且今天已經超過
+  const ended = (t) => !!t.lastDay && today() > t.lastDay;
+  const showing = () => config.theaters.filter((t) => !ended(t));
+
   /* ── 場次 ── */
   const fmtDate = (d) => `${Number(d.slice(5, 7))}/${Number(d.slice(8, 10))}`;
   const weekday = (d) => '日一二三四五六'[new Date(`${d}T00:00:00Z`).getUTCDay()];
@@ -67,7 +71,7 @@
     const now = nowHM();
     const pills = list.length
       ? list.map((x) => `<span class="time${isToday && x < now ? ' past' : ''}">${x}</span>`).join('')
-      : '<span class="no-time">這天沒有場次</span>';
+      : `<span class="no-time">${t.lastDay && state.date > t.lastDay ? `已下檔（${fmtDate(t.lastDay)} 為最後一天）` : '這天沒有場次'}</span>`;
     return `<div class="times"><span class="times-date">${fmtDate(state.date)}（${weekday(state.date)}）</span>${pills}</div>`;
   }
 
@@ -75,7 +79,8 @@
     if (dates.length < 2) return '';
     const rows = dates.map((d) => {
       const list = timesOn(t, d);
-      return `<li${d === state.date ? ' class="on"' : ''}><span class="d">${fmtDate(d)}（${weekday(d)}）</span><span class="ts">${list.length ? list.join('、') : '—'}</span></li>`;
+      const none = t.lastDay && d > t.lastDay ? '已下檔' : '—';
+      return `<li${d === state.date ? ' class="on"' : ''}><span class="d">${fmtDate(d)}（${weekday(d)}）</span><span class="ts">${list.length ? list.join('、') : none}</span></li>`;
     }).join('');
     return `<details class="week" data-week="${t.id}"${state.openWeek.has(t.id) ? ' open' : ''}><summary>看整週場次</summary><ul>${rows}</ul></details>`;
   }
@@ -90,6 +95,7 @@
   }
 
   function matches(t) {
+    if (ended(t)) return false; // 已下檔的戲院不列入清單與地圖，另外收在最下方
     if (state.group !== ALL && t.group !== state.group) return false;
     if (state.onlyFav && !state.favs.has(t.id)) return false;
     if (state.onlyShowing && state.date && !timesOn(t, state.date).length) return false;
@@ -178,7 +184,7 @@
       markers.set(t.id, m);
     });
     map.addLayer(cluster);
-    map.fitBounds(config.theaters.map((t) => [t.lat, t.lng]), { padding: [24, 24] });
+    map.fitBounds(showing().map((t) => [t.lat, t.lng]), { padding: [24, 24] });
   }
 
   function syncMarkers(list, fit) {
@@ -250,8 +256,10 @@
 
   /* ── 畫面 ── */
   function renderChips() {
+    const all = showing();
     $('#groups').innerHTML = [ALL, ...config.groups].map((g) => {
-      const n = g === ALL ? config.theaters.length : config.theaters.filter((t) => t.group === g).length;
+      const n = g === ALL ? all.length : all.filter((t) => t.group === g).length;
+      if (!n) return ''; // 整區都下檔了就不顯示這個地區
       return `<button class="chip" data-group="${esc(g)}" aria-pressed="${state.group === g}">${esc(g)}<span class="n">${n}</span></button>`;
     }).join('');
   }
@@ -281,6 +289,12 @@
         return `<h2 class="section-title">${esc(g)} <span class="n">${items.length} 間</span></h2>
           <div class="cards">${items.map(cardHTML).join('')}</div>`;
       }).join('');
+    }
+    // 已下檔的戲院收在最下方，讓人知道不是漏列
+    const gone = config.theaters.filter(ended);
+    if (gone.length) {
+      $('#list').insertAdjacentHTML('beforeend', `<details class="ended"><summary>已下檔戲院（${gone.length} 間）</summary><ul>${
+        gone.map((t) => `<li>${esc(t.name)}<span>${fmtDate(t.lastDay)} 為最後一天</span></li>`).join('')}</ul></details>`);
     }
     $('#count').textContent = `${list.length} 間戲院`;
     $('#empty').hidden = list.length > 0;
@@ -354,7 +368,9 @@
 
   async function load() {
     config = await fetch(`data/theaters.json?v=${Math.floor(Date.now() / 3600e3)}`).then((r) => r.json());
-    if (!config.groups.includes(state.group)) state.group = ALL;
+    // 網址帶的地區不存在、或整區都下檔了，就回到「全部」
+    if (!showing().some((t) => t.group === state.group)) state.group = ALL;
+    $('#theaterCount').textContent = showing().length; // 首頁的戲院數跟著下檔自動更新
     initDates();
     initMap();
     renderChips();
